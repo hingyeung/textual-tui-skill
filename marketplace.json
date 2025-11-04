@@ -1,0 +1,240 @@
+{
+  "name": "textual-tui",
+  "displayName": "Textual TUI Skill",
+  "version": "1.0.0",
+  "description": "Comprehensive skill for Claude Code to build professional terminal user interfaces with Textual. Includes 40+ widgets, layouts, styling, reactive programming, and worker patterns.",
+  "shortDescription": "Build professional terminal UIs with Textual framework",
+  "author": {
+    "name": "Textual TUI Skill Contributors",
+    "url": "https://github.com/yourusername/textual-tui-skill"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/textual-tui-skill.git"
+  },
+  "homepage": "https://github.com/yourusername/textual-tui-skill",
+  "documentation": "https://github.com/yourusername/textual-tui-skill/blob/main/docs/SKILL-GUIDE.md",
+  "category": "development",
+  "tags": [
+    "textual",
+    "tui",
+    "terminal",
+    "terminal-ui",
+    "cli",
+    "console",
+    "python",
+    "ui-framework",
+    "widgets",
+    "reactive",
+    "claude-code",
+    "skill"
+  ],
+  "keywords": [
+    "textual",
+    "terminal user interface",
+    "TUI",
+    "CLI application",
+    "console UI",
+    "terminal framework",
+    "Python TUI",
+    "terminal widgets",
+    "reactive UI",
+    "terminal styling"
+  ],
+  "compatibility": {
+    "claudeCode": ">=1.0.0",
+    "python": ">=3.8"
+  },
+  "requirements": {
+    "runtime": [
+      "textual>=0.40.0",
+      "rich>=13.0.0"
+    ],
+    "development": [
+      "textual-dev>=1.0.0",
+      "pytest>=7.0.0",
+      "psutil>=5.9.0"
+    ]
+  },
+  "skill": {
+    "file": "textual-tui.skill",
+    "size": 32768,
+    "format": "skill",
+    "hash": {
+      "algorithm": "sha256",
+      "value": ""
+    }
+  },
+  "content": {
+    "documentation": {
+      "coreGuide": "skill/SKILL.md",
+      "widgets": "skill/references/widgets.md",
+      "layouts": "skill/references/layouts.md",
+      "styling": "skill/references/styling.md",
+      "officialDocsIndex": "skill/references/official-guides-index.md",
+      "userGuide": "docs/SKILL-GUIDE.md"
+    },
+    "examples": [
+      {
+        "name": "Todo List",
+        "file": "examples/todo_app.py",
+        "description": "Full-featured todo list with state management",
+        "difficulty": "beginner",
+        "topics": ["input", "lists", "reactive", "events"]
+      },
+      {
+        "name": "System Monitor",
+        "file": "examples/dashboard_app.py",
+        "description": "Real-time system monitor with charts",
+        "difficulty": "intermediate",
+        "topics": ["grid-layout", "custom-widgets", "timers", "data-viz"]
+      },
+      {
+        "name": "Data Viewer",
+        "file": "examples/data_viewer.py",
+        "description": "JSON/CSV file viewer with multiple views",
+        "difficulty": "intermediate",
+        "topics": ["file-io", "tables", "trees", "tabs", "modals"]
+      },
+      {
+        "name": "Worker Demo",
+        "file": "examples/worker_demo.py",
+        "description": "Background task processing patterns",
+        "difficulty": "advanced",
+        "topics": ["workers", "async", "threading", "progress"]
+      }
+    ],
+    "structure": {
+      "skill": "Main skill source directory",
+      "examples": "Working example applications",
+      "docs": "Additional documentation",
+      "scripts": "Build and package tools"
+    }
+  },
+  "features": [
+    "40+ built-in widgets with comprehensive examples",
+    "Complete layout system (vertical, horizontal, grid, dock)",
+    "Full CSS/TCSS styling guide with themes",
+    "Reactive programming patterns for automatic UI updates",
+    "Worker patterns for background tasks",
+    "Official Textual documentation index with web_fetch integration",
+    "4 complete working example applications",
+    "Testing patterns with pytest",
+    "Hot reload development workflow"
+  ],
+  "coverage": {
+    "widgets": 40,
+    "examples": 4,
+    "documentation": "~16,000 words",
+    "codeExamples": "1,100+ lines"
+  },
+  "topics": [
+    {
+      "name": "Widgets",
+      "description": "Input, display, navigation, and container widgets"
+    },
+    {
+      "name": "Layouts",
+      "description": "Vertical, horizontal, grid, and dock layouts"
+    },
+    {
+      "name": "Styling",
+      "description": "CSS/TCSS styling, colors, themes, and design system"
+    },
+    {
+      "name": "Events",
+      "description": "Event handling, keyboard bindings, and actions"
+    },
+    {
+      "name": "Reactivity",
+      "description": "Reactive attributes and automatic UI updates"
+    },
+    {
+      "name": "Workers",
+      "description": "Background tasks and async operations"
+    },
+    {
+      "name": "Screens",
+      "description": "Navigation, modals, and multi-screen apps"
+    },
+    {
+      "name": "Testing",
+      "description": "Testing patterns with pytest and Pilot API"
+    }
+  ],
+  "links": {
+    "download": "https://github.com/yourusername/textual-tui-skill/releases/latest/download/textual-tui.skill",
+    "releases": "https://github.com/yourusername/textual-tui-skill/releases",
+    "issues": "https://github.com/yourusername/textual-tui-skill/issues",
+    "contributing": "https://github.com/yourusername/textual-tui-skill/blob/main/CONTRIBUTING.md",
+    "textualDocs": "https://textual.textualize.io/",
+    "textualGithub": "https://github.com/Textualize/textual"
+  },
+  "installation": {
+    "method": "download",
+    "steps": [
+      "Download textual-tui.skill from releases",
+      "Install in Claude Code",
+      "Skill activates automatically for TUI development"
+    ]
+  },
+  "quickstart": {
+    "code": "from textual.app import App, ComposeResult\nfrom textual.widgets import Header, Footer, Button\n\nclass MyApp(App):\n    def compose(self) -> ComposeResult:\n        yield Header()\n        yield Button(\"Click me!\")\n        yield Footer()\n    \n    def on_button_pressed(self) -> None:\n        self.notify(\"Button clicked!\")\n\nif __name__ == \"__main__\":\n    MyApp().run()",
+    "language": "python"
+  },
+  "screenshots": [
+    {
+      "url": "https://github.com/yourusername/textual-tui-skill/raw/main/assets/screenshots/todo-app.png",
+      "caption": "Todo List Application",
+      "alt": "Screenshot of todo list application with header, input field, and list of items"
+    },
+    {
+      "url": "https://github.com/yourusername/textual-tui-skill/raw/main/assets/screenshots/dashboard.png",
+      "caption": "System Monitor Dashboard",
+      "alt": "Screenshot of dashboard with CPU/memory charts and metrics"
+    },
+    {
+      "url": "https://github.com/yourusername/textual-tui-skill/raw/main/assets/screenshots/data-viewer.png",
+      "caption": "Data Viewer Application",
+      "alt": "Screenshot of data viewer with file browser and table view"
+    }
+  ],
+  "metadata": {
+    "created": "2025",
+    "updated": "2025",
+    "status": "active",
+    "stability": "stable",
+    "maintenanceLevel": "actively-developed"
+  },
+  "support": {
+    "documentation": true,
+    "examples": true,
+    "community": true
+  },
+  "analytics": {
+    "stars": 0,
+    "downloads": 0,
+    "watchers": 0
+  },
+  "badges": [
+    {
+      "type": "license",
+      "url": "https://img.shields.io/github/license/yourusername/textual-tui-skill",
+      "alt": "MIT License"
+    },
+    {
+      "type": "version",
+      "url": "https://img.shields.io/github/v/release/yourusername/textual-tui-skill",
+      "alt": "Latest Release"
+    },
+    {
+      "type": "downloads",
+      "url": "https://img.shields.io/github/downloads/yourusername/textual-tui-skill/total",
+      "alt": "Total Downloads"
+    }
+  ],
+  "changelogUrl": "https://github.com/yourusername/textual-tui-skill/releases",
+  "funding": [],
+  "contributors": []
+}
