@@ -80,6 +80,8 @@ if __name__ == "__main__":
 - `widgets.md` - Gallery of 40+ widgets
 - `layouts.md` - Layout patterns and recipes
 - `styling.md` - Complete TCSS guide
+- `workers.md` - Worker patterns (progress, cancellation, multiple workers)
+- `testing.md` - Testing with the Pilot API
 - `official-guides-index.md` - Index of official Textual documentation
 
 ### Example Applications (examples/)
@@ -98,6 +100,8 @@ textual-tui-skill/
 │   │   ├── widgets.md
 │   │   ├── layouts.md
 │   │   ├── styling.md
+│   │   ├── workers.md
+│   │   ├── testing.md
 │   │   └── official-guides-index.md
 │   └── assets/                # Example applications
 │       ├── todo_app.py
@@ -105,7 +109,7 @@ textual-tui-skill/
 │       ├── data_viewer.py
 │       ├── worker_demo.py
 │       └── README.md
-├── examples/                   # Standalone examples (symlink)
+├── examples/                   # Standalone example applications
 ├── docs/                       # Additional documentation
 ├── scripts/                    # Build and package scripts
 │   └── package.py
