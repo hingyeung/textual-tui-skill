@@ -22,15 +22,26 @@ This skill enables Claude Code to generate production-quality terminal user inte
 
 ### For Claude Code Users
 
-1. Download `textual-tui.skill` from the [releases](../../releases)
-2. Install in Claude Code
-3. The skill activates automatically for TUI development
+**Personal install** (available in all your projects):
+```bash
+git clone https://github.com/aperepel/textual-tui-skill.git
+cp -r textual-tui-skill/skill ~/.claude/skills/textual-tui
+```
+
+**Project install** (available only in the current project):
+```bash
+git clone https://github.com/aperepel/textual-tui-skill.git /tmp/textual-tui-skill
+mkdir -p .claude/skills
+cp -r /tmp/textual-tui-skill/skill .claude/skills/textual-tui
+```
+
+The skill activates automatically when you work on TUI tasks. You can also invoke it manually with `/textual-tui`.
 
 ### For Skill Development
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/textual-tui-skill.git
+git clone https://github.com/aperepel/textual-tui-skill.git
 cd textual-tui-skill
 
 # Install dependencies (for testing examples)
