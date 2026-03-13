@@ -13,6 +13,8 @@ Background task patterns for Textual applications.
 ## Worker with progress updates
 
 ```python
+import asyncio
+from textual.app import App, ComposeResult
 from textual.widgets import ProgressBar
 
 class MyApp(App):
@@ -34,6 +36,8 @@ class MyApp(App):
 Use `call_from_thread` when running with `thread=True`:
 
 ```python
+from textual.app import App
+
 class MyApp(App):
     def on_mount(self) -> None:
         self.run_worker(self.fetch_data, thread=True)
@@ -51,6 +55,10 @@ Never modify widgets directly from thread workers.
 ## Worker cancellation
 
 ```python
+import asyncio
+from textual.app import App
+from textual.worker import Worker
+
 class MyApp(App):
     worker: Worker | None = None
 
@@ -72,6 +80,9 @@ class MyApp(App):
 ## Worker error handling
 
 ```python
+from textual.app import App
+from textual.worker import Worker, WorkerState
+
 class MyApp(App):
     def on_mount(self) -> None:
         worker = self.run_worker(self.risky_task())
@@ -94,6 +105,8 @@ class MyApp(App):
 ## Multiple concurrent workers
 
 ```python
+from textual.app import App
+
 class MyApp(App):
     def on_mount(self) -> None:
         self.run_worker(self.task_one(), name="task1", group="processing")
@@ -114,20 +127,24 @@ class MyApp(App):
 | CPU-bound computation | `run_worker(fn, thread=True)` |
 
 ```python
-# Async — for I/O bound
-async def fetch_data(self) -> str:
-    async with httpx.AsyncClient() as client:
-        response = await client.get("https://api.example.com")
-        return response.text
+import httpx
+from textual.app import App
 
-# Thread — for CPU bound
-def process_data(self) -> str:
-    result = [i**2 for i in range(1_000_000)]
-    return str(sum(result))
+class MyApp(App):
+    # Async — for I/O bound
+    async def fetch_data(self) -> str:
+        async with httpx.AsyncClient() as client:
+            response = await client.get("https://api.example.com")
+            return response.text
 
-def on_mount(self) -> None:
-    self.run_worker(self.fetch_data())
-    self.run_worker(self.process_data, thread=True)
+    # Thread — for CPU bound
+    def process_data(self) -> str:
+        result = [i**2 for i in range(1_000_000)]
+        return str(sum(result))
+
+    def on_mount(self) -> None:
+        self.run_worker(self.fetch_data())
+        self.run_worker(self.process_data, thread=True)
 ```
 
 ## Best practices

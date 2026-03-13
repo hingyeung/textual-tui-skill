@@ -305,7 +305,7 @@ class TabbedApp(App):
                 yield Label("Settings content")
 ```
 
-## Sizing &amp; Spacing
+## Sizing & Spacing
 
 For CSS units (`fr`, `%`, `auto`, `min-width`, etc.), padding, margin, and alignment properties — see [styling.md](styling.md#dimensions).
 

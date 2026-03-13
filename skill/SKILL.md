@@ -22,7 +22,8 @@ class MyApp(App):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.exit()
 
-MyApp().run()
+if __name__ == "__main__":
+    MyApp().run()
 ```
 
 Install: `pip install textual textual-dev`
@@ -35,14 +36,18 @@ Dev mode with hot reload: `textual run --dev app.py`
 Use container classes — see [references/layouts.md](references/layouts.md) for recipes.
 
 ```python
-from textual.containers import Horizontal, Vertical, ScrollableContainer
+from textual.app import ComposeResult
+from textual.containers import Container, Horizontal, Vertical, ScrollableContainer
+from textual.widgets import Header, Footer, Label
 
 def compose(self) -> ComposeResult:
     with Vertical():
         yield Header()
         with Horizontal():
-            with Container(id="sidebar"): yield Label("Menu")
-            with ScrollableContainer(id="content"): yield Label("Content")
+            with Container(id="sidebar"):
+                yield Label("Menu")
+            with ScrollableContainer(id="content"):
+                yield Label("Content")
         yield Footer()
 ```
 
@@ -52,6 +57,7 @@ CSS in `App.CSS` string or `CSS_PATH = "app.tcss"` — see [references/styling.m
 
 ```python
 from textual.reactive import reactive
+from textual.widget import Widget
 
 class Counter(Widget):
     count = reactive(0)
@@ -63,6 +69,9 @@ class Counter(Widget):
 ### Events and bindings
 
 ```python
+from textual.app import App
+from textual.widgets import Input, Log
+
 class MyApp(App):
     BINDINGS = [("q", "quit", "Quit"), ("d", "toggle_dark", "Dark mode")]
 
@@ -80,7 +89,9 @@ Handler names follow `on_{widget_class}_{message_name}` (snake_case).
 **Never block the event loop.** Use workers for anything > 100ms (network, file I/O, DB, computation).
 
 ```python
-from textual.worker import WorkerState
+from textual.app import App
+from textual.widgets import Button
+from textual.worker import Worker, WorkerState
 
 class MyApp(App):
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -100,7 +111,10 @@ For progress, cancellation, and multiple workers — see [references/workers.md]
 ### Screens and modals
 
 ```python
+from textual.app import ComposeResult
+from textual.containers import Container
 from textual.screen import ModalScreen
+from textual.widgets import Button, Label
 
 class ConfirmDialog(ModalScreen[bool]):
     def compose(self) -> ComposeResult:
@@ -112,13 +126,17 @@ class ConfirmDialog(ModalScreen[bool]):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.dismiss(event.button.id == "yes")
 
-# In app:
-result = await self.push_screen_wait(ConfirmDialog())
+# In an async method within your App or Screen:
+# result = await self.push_screen_wait(ConfirmDialog())
 ```
 
 ### Custom messages
 
 ```python
+from textual.app import App
+from textual.message import Message
+from textual.widget import Widget
+
 class MyWidget(Widget):
     class Selected(Message):
         def __init__(self, value: str) -> None:
@@ -135,12 +153,15 @@ class MyApp(App):
 
 ## Testing
 
+See [references/testing.md](references/testing.md) for full Pilot API patterns. Quick example:
+
 ```python
+from my_app import MyApp
+
 async def test_button_click():
-    app = MyApp()
-    async with app.run_test() as pilot:
-        await pilot.click("#my-button")
-        assert app.query_one("#status").value == "clicked"
+    async with MyApp().run_test() as pilot:
+        await pilot.click("#click")
+        # assert expected state
 ```
 
 ## Key pitfalls

@@ -64,6 +64,8 @@ async def test_text_input():
 ## Querying state
 
 ```python
+from textual.widgets import Button
+
 async def test_widget_state():
     async with MyApp().run_test() as pilot:
         # Find by ID

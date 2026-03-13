@@ -24,8 +24,8 @@ This skill enables Claude Code to generate production-quality terminal user inte
 
 **Personal install** (available in all your projects):
 ```bash
-git clone https://github.com/aperepel/textual-tui-skill.git
-cp -r textual-tui-skill/skill ~/.claude/skills/textual-tui
+git clone https://github.com/aperepel/textual-tui-skill.git /tmp/textual-tui-skill
+cp -r /tmp/textual-tui-skill/skill ~/.claude/skills/textual-tui
 ```
 
 **Project install** (available only in the current project):
